@@ -73,7 +73,22 @@
             </div>
             <div class="brand-copy">
               <span class="brand-name">Châu Bảo Nhân</span>
-              <span class="brand-meta">&copy; 2026</span>
+              <span class="brand-footer">
+                <span class="brand-meta">&copy; 2026</span>
+                <span class="brand-bot" aria-hidden="true">
+                  <svg viewBox="0 0 64 64">
+                    <rect x="14" y="16" width="36" height="26" rx="8" fill="#23190f" />
+                    <rect x="17" y="19" width="30" height="20" rx="6" fill="#1d6b63" />
+                    <circle cx="28" cy="29" r="4" fill="#fff9f2" />
+                    <circle cx="39" cy="29" r="4" fill="#fff9f2" />
+                    <circle cx="29" cy="29" r="1.6" fill="#23190f" />
+                    <circle cx="38" cy="29" r="1.6" fill="#23190f" />
+                    <path d="M27 36 Q32 39 37 36" stroke="#fff9f2" stroke-width="2.4" fill="none" stroke-linecap="round" />
+                    <line x1="32" y1="16" x2="32" y2="10" stroke="#23190f" stroke-width="3" />
+                    <circle class="brand-bot-antenna" cx="32" cy="8" r="4" fill="#b8502d" />
+                  </svg>
+                </span>
+              </span>
             </div>
           </div>
           <div class="nav-links">
@@ -182,7 +197,7 @@
                 </p>
               </div>
               <div class="featured-media">
-                <img src="./1.gif" alt="Preview of the AI Chatbot System project" />
+                <img src="./figure/1.gif" alt="Preview of the AI Chatbot System project" />
               </div>
             </article>
 
@@ -276,7 +291,7 @@
             <article class="certificate-card">
               <div class="certificate-top">
                 <span class="certificate-brand">
-                  <img src="./IBM_logo.svg" alt="IBM logo" class="certificate-logo ibm-logo" />
+                  <img src="./figure/IBM_logo.svg" alt="IBM logo" class="certificate-logo ibm-logo" />
                 </span>
                 <span class="certificate-label">Coursera</span>
               </div>
@@ -298,7 +313,7 @@
               <div class="certificate-top">
                 <span class="certificate-brand">
                   <img
-                    src="./Microsoft_logo_(2012).svg"
+                    src="./figure/Microsoft_logo_(2012).svg"
                     alt="Microsoft logo"
                     class="certificate-logo microsoft-logo"
                   />
@@ -323,7 +338,7 @@
               <div class="certificate-top">
                 <span class="certificate-brand">
                   <img
-                    src="./download (1).png"
+                    src="./figure/download (1).png"
                     alt="British Council logo"
                     class="certificate-logo council-logo"
                   />
@@ -336,8 +351,93 @@
                 demonstrating upper-intermediate communication skills.
               </p>
       
-              <a href="./2.pdf" target="_blank" rel="noreferrer">View Certificate</a>
+              <a href="./figure/2.pdf" target="_blank" rel="noreferrer">View Certificate</a>
             </article>
+          </div>
+        </section>
+
+        <section class="section reveal" id="chat-demo">
+          <div class="section-heading">
+            <p class="eyebrow">Interactive Demo</p>
+            <h2>A local chat component that matches the website and lets visitors try 3 demo states.</h2>
+          </div>
+
+          <div class="chat-demo-shell">
+            <div class="chat-demo-copy">
+              <p>
+                This embedded component uses the same color language as the portfolio and runs entirely on local JavaScript without calling an API.
+              </p>
+              <div class="chat-demo-highlights">
+                <span>Greeting state</span>
+                <span>Thinking state</span>
+                <span>Lost link state</span>
+                <span>User input demo</span>
+              </div>
+              <a class="chat-demo-doc-link" href="./chat-demo.html">Document</a>
+            </div>
+
+            <section class="chat-demo-panel" aria-label="Portfolio chat demo">
+              <header class="chat-demo-header">
+                <div class="chat-demo-title">
+                  <div id="chat-demo-avatar" class="chat-demo-avatar is-greeting" aria-hidden="true">
+                    <svg viewBox="0 0 64 64">
+                      <rect x="14" y="16" width="36" height="26" rx="8" fill="#23190f" />
+                      <rect x="17" y="19" width="30" height="20" rx="6" fill="#1d6b63" />
+                      <circle class="chat-demo-eye-base" cx="28" cy="29" r="4" fill="#fff9f2" />
+                      <circle class="chat-demo-eye-base" cx="39" cy="29" r="4" fill="#fff9f2" />
+                      <circle class="chat-demo-pupil chat-demo-pupil-left" cx="29" cy="29" r="1.6" fill="#23190f" />
+                      <circle class="chat-demo-pupil chat-demo-pupil-right" cx="38" cy="29" r="1.6" fill="#23190f" />
+                      <path class="chat-demo-eye-thinking" d="M24.5 29 A3.5 3.5 0 1 1 31.5 29" fill="none" stroke="#fff9f2" stroke-width="1.6" stroke-linecap="round" />
+                      <path class="chat-demo-eye-thinking" d="M35.5 29 A3.5 3.5 0 1 1 42.5 29" fill="none" stroke="#fff9f2" stroke-width="1.6" stroke-linecap="round" />
+                      <path class="chat-demo-eye-lost" d="M25 26 L31 32" stroke="#fff9f2" stroke-width="1.8" stroke-linecap="round" />
+                      <path class="chat-demo-eye-lost" d="M31 26 L25 32" stroke="#fff9f2" stroke-width="1.8" stroke-linecap="round" />
+                      <path class="chat-demo-eye-lost" d="M36 26 L42 32" stroke="#fff9f2" stroke-width="1.8" stroke-linecap="round" />
+                      <path class="chat-demo-eye-lost" d="M42 26 L36 32" stroke="#fff9f2" stroke-width="1.8" stroke-linecap="round" />
+                      <path class="chat-demo-mouth chat-demo-mouth-greeting" d="M27 36 Q32 39 37 36" stroke="#fff9f2" stroke-width="2.4" fill="none" stroke-linecap="round" />
+                      <path class="chat-demo-mouth chat-demo-mouth-thinking" d="M28 36 H36" stroke="#fff9f2" stroke-width="2.4" fill="none" stroke-linecap="round" />
+                      <path class="chat-demo-mouth chat-demo-mouth-lost" d="M27 38 Q32 34 37 38" stroke="#fff9f2" stroke-width="2.4" fill="none" stroke-linecap="round" />
+                      <line x1="32" y1="16" x2="32" y2="10" stroke="#23190f" stroke-width="3" />
+                      <circle class="chat-demo-antenna" cx="32" cy="8" r="4" fill="#b8502d" />
+                    </svg>
+                  </div>
+                  <div>
+                    <strong>Portfolio Assistant</strong>
+                    <p>Embedded chat preview</p>
+                  </div>
+                </div>
+                <div class="chat-demo-branding">
+                  <strong>Châu Bảo Nhân</strong>
+                  <span>&copy; 2026</span>
+                </div>
+                <div id="chat-demo-status" class="chat-demo-status">Online</div>
+              </header>
+
+              <div class="chat-demo-controls">
+                <button class="chat-demo-button is-active" type="button" data-chat-action="greeting">Greeting</button>
+                <button class="chat-demo-button" type="button" data-chat-action="thinking">Thinking</button>
+                <button class="chat-demo-button" type="button" data-chat-action="lost-link">Lost Link</button>
+              </div>
+
+              <div id="chat-demo-body" class="chat-demo-body">
+                <div class="chat-demo-message bot chat-demo-welcome">
+                  <p class="eyebrow">Smart Conversation</p>
+                  <strong>Xin chao! Toi la portfolio chat demo.</strong>
+                  <p>Try one of the 3 actions above or type a message like project, research, or contact.</p>
+                </div>
+              </div>
+
+              <form id="chat-demo-form" class="chat-demo-footer">
+                <input
+                  id="chat-demo-input"
+                  class="chat-demo-input"
+                  name="message"
+                  type="text"
+                  placeholder="Ask about projects, research, or contact..."
+                  autocomplete="off"
+                />
+                <button id="chat-demo-send" class="chat-demo-send" type="submit">Send</button>
+              </form>
+            </section>
           </div>
         </section>
 
