@@ -42,7 +42,7 @@ const certifications = [
 ] as const;
 
 const certificationCount = computed(() => certifications.length);
-const { trackRef, activeIndex, isAtStart, isAtEnd, previous, next, handleKeydown, focusInactiveItem } =
+const { trackRef, activeIndex, previous, next, handleKeydown, focusInactiveItem } =
   useCenteredCarousel(certificationCount);
 </script>
 
@@ -112,7 +112,6 @@ const { trackRef, activeIndex, isAtStart, isAtEnd, previous, next, handleKeydown
           variant="accent"
           size="lg"
           aria-label="Previous certification"
-          :disabled="isAtStart"
           @click="previous"
         >
           <ArrowRight class="certifications-carousel-arrow certifications-carousel-arrow-previous" />
@@ -129,7 +128,6 @@ const { trackRef, activeIndex, isAtStart, isAtEnd, previous, next, handleKeydown
           variant="accent"
           size="lg"
           aria-label="Next certification"
-          :disabled="isAtEnd"
           @click="next"
         >
           <ArrowRight class="certifications-carousel-arrow" />
@@ -279,11 +277,6 @@ const { trackRef, activeIndex, isAtStart, isAtEnd, previous, next, handleKeydown
       z-index: 3;
       flex: 0 0 auto;
       box-shadow: 0 8px 24px rgba(45, 42, 36, 0.18);
-
-      &:disabled {
-        opacity: 0.28;
-        cursor: not-allowed;
-      }
 
       @include mixins.mq("md") {
         position: absolute;

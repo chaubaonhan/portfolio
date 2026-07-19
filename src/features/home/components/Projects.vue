@@ -15,8 +15,7 @@ import type { ProjectPreview } from "../../../content/types";
 
 const loadedPreviews = ref<ProjectPreview[] | null>(null);
 const cardCount = computed(() => (loadedPreviews.value?.length ?? 0) + (isFeatureEnabled("startProject") ? 1 : 0));
-const { trackRef, activeIndex, isAtStart, isAtEnd, previous, next, handleKeydown, focusInactiveItem } =
-  useCenteredCarousel(cardCount);
+const { trackRef, activeIndex, previous, next, handleKeydown, focusInactiveItem } = useCenteredCarousel(cardCount);
 const currentCardNumber = computed(() => (cardCount.value ? activeIndex.value + 1 : 0));
 
 const emit = defineEmits<{
@@ -79,7 +78,6 @@ onMounted(loadPreviews);
           variant="accent"
           size="lg"
           aria-label="Previous project"
-          :disabled="isAtStart"
           @click="previous"
         >
           <ArrowRight class="projects-carousel-arrow projects-carousel-arrow-previous" />
@@ -96,7 +94,6 @@ onMounted(loadPreviews);
           variant="accent"
           size="lg"
           aria-label="Next project"
-          :disabled="isAtEnd"
           @click="next"
         >
           <ArrowRight class="projects-carousel-arrow" />
@@ -266,11 +263,6 @@ onMounted(loadPreviews);
       z-index: 3;
       flex: 0 0 auto;
       box-shadow: 0 8px 24px rgba(45, 42, 36, 0.18);
-
-      &:disabled {
-        opacity: 0.28;
-        cursor: not-allowed;
-      }
 
       @include mixins.mq("md") {
         position: absolute;
