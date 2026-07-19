@@ -1,16 +1,23 @@
 <script setup lang="ts">
-import { ref, watch, onMounted } from "vue";
+import { computed, ref, watch, onMounted } from "vue";
 import { previews } from "../../../content/projects/previews";
 import { locale } from "../../../i18n/store";
 import PreviewCard from "../../projects/components/PreviewCard.vue";
 import NotchSection from "../../../components/NotchSection.vue";
 import Banner from "../../../components/Banner.vue";
+import ButtonRound from "../../../components/ButtonRound.vue";
+import ArrowRight from "../../../components/icons/ArrowRight.vue";
 import { t } from "../../../i18n/utils/translate";
 import { isFeatureEnabled } from "../../../utils/features";
+import { useCenteredCarousel } from "../../../composables/useCenteredCarousel";
 
 import type { ProjectPreview } from "../../../content/types";
 
 const loadedPreviews = ref<ProjectPreview[] | null>(null);
+const cardCount = computed(() => (loadedPreviews.value?.length ?? 0) + (isFeatureEnabled("startProject") ? 1 : 0));
+const { trackRef, activeIndex, isAtStart, isAtEnd, previous, next, handleKeydown, focusInactiveItem } =
+  useCenteredCarousel(cardCount);
+const currentCardNumber = computed(() => (cardCount.value ? activeIndex.value + 1 : 0));
 
 const emit = defineEmits<{
   (e: "loaded", previews: ProjectPreview[]): void;
@@ -40,10 +47,60 @@ onMounted(loadPreviews);
         <h2 class="projects-title-copy">{{ t("projects") }}</h2>
       </div>
     </div>
-    <div class="grid">
-      <div class="projects-cards">
-        <PreviewCard v-for="preview in loadedPreviews" :key="preview.title" :preview="preview" />
-        <PreviewCard v-if="isFeatureEnabled('startProject')" />
+    <div class="projects-carousel">
+      <div
+        ref="trackRef"
+        class="projects-cards"
+        role="region"
+        aria-label="Selected work carousel"
+        tabindex="0"
+        @keydown="handleKeydown"
+      >
+        <div
+          v-for="(preview, index) in loadedPreviews"
+          :key="preview.title"
+          :class="['projects-card', { 'projects-card-active': activeIndex === index }]"
+          @click.capture="focusInactiveItem($event, index)"
+        >
+          <PreviewCard :preview="preview" />
+        </div>
+        <div
+          v-if="isFeatureEnabled('startProject')"
+          :class="['projects-card', { 'projects-card-active': activeIndex === cardCount - 1 }]"
+          @click.capture="focusInactiveItem($event, cardCount - 1)"
+        >
+          <PreviewCard />
+        </div>
+      </div>
+
+      <div class="projects-carousel-controls">
+        <ButtonRound
+          class="projects-carousel-button projects-carousel-button-previous"
+          variant="accent"
+          size="lg"
+          aria-label="Previous project"
+          :disabled="isAtStart"
+          @click="previous"
+        >
+          <ArrowRight class="projects-carousel-arrow projects-carousel-arrow-previous" />
+        </ButtonRound>
+
+        <div class="projects-carousel-status" aria-live="polite">
+          <span>{{ String(currentCardNumber).padStart(2, "0") }}</span>
+          <span class="projects-carousel-status-line"></span>
+          <span>{{ String(cardCount).padStart(2, "0") }}</span>
+        </div>
+
+        <ButtonRound
+          class="projects-carousel-button projects-carousel-button-next"
+          variant="accent"
+          size="lg"
+          aria-label="Next project"
+          :disabled="isAtEnd"
+          @click="next"
+        >
+          <ArrowRight class="projects-carousel-arrow" />
+        </ButtonRound>
       </div>
     </div>
   </div>
@@ -135,25 +192,132 @@ onMounted(loadPreviews);
   }
 
   &-cards {
-    max-width: 100%;
-    flex: 1;
-    grid-column: 1 / span 12;
-    display: grid;
-    gap: var(--space-lg);
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    --carousel-card-width: min(82vw, 620px);
 
-    @include mixins.mq("md") {
-      grid-column: 1 / span 12;
+    display: flex;
+    gap: clamp(20px, 3vw, 48px);
+    width: 100%;
+    padding: 24px calc((100% - var(--carousel-card-width)) / 2) 36px;
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
+    scroll-padding-inline: calc((100% - var(--carousel-card-width)) / 2);
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+    touch-action: pan-x pan-y;
+    mask-image: linear-gradient(to right, transparent 0, #000 8%, #000 92%, transparent 100%);
+
+    &::-webkit-scrollbar {
+      display: none;
     }
 
-    @include mixins.mq("lg") {
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      grid-column: 3 / span 8;
+    @include mixins.mq("md") {
+      --carousel-card-width: min(60vw, 620px);
     }
 
     @include mixins.mq("xl") {
-      grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+      --carousel-card-width: min(48vw, 620px);
     }
+  }
+
+  &-card {
+    flex: 0 0 var(--carousel-card-width);
+    min-width: 0;
+    opacity: 0.24;
+    filter: saturate(0.55);
+    scroll-snap-align: center;
+    scroll-snap-stop: always;
+    transform: scale(0.9);
+    transform-origin: center;
+    transition:
+      opacity 0.45s var(--ease-smooth),
+      filter 0.45s var(--ease-smooth),
+      transform 0.45s var(--ease-smooth);
+
+    &-active {
+      opacity: 1;
+      filter: none;
+      transform: scale(1);
+    }
+
+    :deep(.preview-card) {
+      display: block;
+      width: 100%;
+    }
+  }
+
+  &-carousel {
+    position: relative;
+    width: calc(100% + var(--space-outer) * 2);
+    margin-inline: calc(var(--space-outer) * -1);
+
+    &-controls {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: var(--space-md);
+      padding-inline: var(--space-outer);
+
+      @include mixins.mq("md") {
+        display: contents;
+      }
+    }
+
+    &-button {
+      z-index: 3;
+      flex: 0 0 auto;
+      box-shadow: 0 8px 24px rgba(45, 42, 36, 0.18);
+
+      &:disabled {
+        opacity: 0.28;
+        cursor: not-allowed;
+      }
+
+      @include mixins.mq("md") {
+        position: absolute;
+        top: 42%;
+        transform: translateY(-50%);
+
+        &-previous {
+          left: max(var(--space-outer), 14px);
+        }
+
+        &-next {
+          right: max(var(--space-outer), 14px);
+        }
+      }
+    }
+
+    &-arrow {
+      width: 100%;
+
+      &-previous {
+        transform: rotate(180deg);
+      }
+    }
+
+    &-status {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: var(--space-sm);
+      color: var(--color-text-300);
+      font-family: "ProFontWindows";
+      font-size: var(--font-size-sm);
+      letter-spacing: 0.08em;
+
+      &-line {
+        width: 48px;
+        height: 2px;
+        background: currentColor;
+        opacity: 0.45;
+      }
+    }
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .projects-card {
+    transition: none;
   }
 }
 </style>

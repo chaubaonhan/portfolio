@@ -1,8 +1,12 @@
 <script setup lang="ts">
+import { computed } from "vue";
 import Banner from "../../../components/Banner.vue";
+import ButtonRound from "../../../components/ButtonRound.vue";
 import Link from "../../../components/Link.vue";
 import NotchSection from "../../../components/NotchSection.vue";
+import ArrowRight from "../../../components/icons/ArrowRight.vue";
 import ArrowRightLong from "../../../components/icons/ArrowRightLong.vue";
+import { useCenteredCarousel } from "../../../composables/useCenteredCarousel";
 import aptisLogo from "../../../assets/certifications/aptis.png";
 import ibmLogo from "../../../assets/certifications/ibm.svg";
 import microsoftLogo from "../../../assets/certifications/microsoft.svg";
@@ -36,6 +40,10 @@ const certifications = [
     href: null,
   },
 ] as const;
+
+const certificationCount = computed(() => certifications.length);
+const { trackRef, activeIndex, isAtStart, isAtEnd, previous, next, handleKeydown, focusInactiveItem } =
+  useCenteredCarousel(certificationCount);
 </script>
 
 <template>
@@ -52,9 +60,21 @@ const certifications = [
       </div>
     </div>
 
-    <div class="grid certifications-grid">
-      <div class="certifications-cards">
-        <article v-for="(certification, index) in certifications" :key="certification.title" class="certification-card">
+    <div class="certifications-carousel">
+      <div
+        ref="trackRef"
+        class="certifications-cards"
+        role="region"
+        aria-label="Certifications carousel"
+        tabindex="0"
+        @keydown="handleKeydown"
+      >
+        <article
+          v-for="(certification, index) in certifications"
+          :key="certification.title"
+          :class="['certification-card', { 'certification-card-active': activeIndex === index }]"
+          @click.capture="focusInactiveItem($event, index)"
+        >
           <div class="certification-card-top">
             <span class="certification-card-index">0{{ index + 1 }}</span>
             <div class="certification-card-logo">
@@ -84,6 +104,36 @@ const certifications = [
             <span v-else class="certification-card-private">Available on request</span>
           </div>
         </article>
+      </div>
+
+      <div class="certifications-carousel-controls">
+        <ButtonRound
+          class="certifications-carousel-button certifications-carousel-button-previous"
+          variant="accent"
+          size="lg"
+          aria-label="Previous certification"
+          :disabled="isAtStart"
+          @click="previous"
+        >
+          <ArrowRight class="certifications-carousel-arrow certifications-carousel-arrow-previous" />
+        </ButtonRound>
+
+        <div class="certifications-carousel-status" aria-live="polite">
+          <span>{{ String(activeIndex + 1).padStart(2, "0") }}</span>
+          <span class="certifications-carousel-status-line"></span>
+          <span>{{ String(certificationCount).padStart(2, "0") }}</span>
+        </div>
+
+        <ButtonRound
+          class="certifications-carousel-button certifications-carousel-button-next"
+          variant="accent"
+          size="lg"
+          aria-label="Next certification"
+          :disabled="isAtEnd"
+          @click="next"
+        >
+          <ArrowRight class="certifications-carousel-arrow" />
+        </ButtonRound>
       </div>
     </div>
   </section>
@@ -184,23 +234,96 @@ const certifications = [
     }
   }
 
-  &-grid {
-    width: 100%;
-  }
-
   &-cards {
-    grid-column: 1 / 13;
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: var(--space-lg);
+    --carousel-card-width: min(82vw, 460px);
 
-    @include mixins.mq("md") {
-      grid-template-columns: repeat(2, minmax(0, 1fr));
+    display: flex;
+    gap: clamp(20px, 3vw, 44px);
+    width: 100%;
+    padding: 24px calc((100% - var(--carousel-card-width)) / 2) 36px;
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
+    scroll-padding-inline: calc((100% - var(--carousel-card-width)) / 2);
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+    touch-action: pan-x pan-y;
+    mask-image: linear-gradient(to right, transparent 0, #000 8%, #000 92%, transparent 100%);
+
+    &::-webkit-scrollbar {
+      display: none;
     }
 
-    @include mixins.mq("lg") {
-      grid-column: 3 / 11;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
+    @include mixins.mq("md") {
+      --carousel-card-width: min(48vw, 460px);
+    }
+  }
+
+  &-carousel {
+    position: relative;
+    width: calc(100% + var(--space-outer) * 2);
+    margin-inline: calc(var(--space-outer) * -1);
+
+    &-controls {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: var(--space-md);
+      padding-inline: var(--space-outer);
+
+      @include mixins.mq("md") {
+        display: contents;
+      }
+    }
+
+    &-button {
+      z-index: 3;
+      flex: 0 0 auto;
+      box-shadow: 0 8px 24px rgba(45, 42, 36, 0.18);
+
+      &:disabled {
+        opacity: 0.28;
+        cursor: not-allowed;
+      }
+
+      @include mixins.mq("md") {
+        position: absolute;
+        top: 46%;
+        transform: translateY(-50%);
+
+        &-previous {
+          left: max(var(--space-outer), 14px);
+        }
+
+        &-next {
+          right: max(var(--space-outer), 14px);
+        }
+      }
+    }
+
+    &-arrow {
+      width: 100%;
+
+      &-previous {
+        transform: rotate(180deg);
+      }
+    }
+
+    &-status {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: var(--space-sm);
+      color: var(--color-text-300);
+      font-family: "ProFontWindows";
+      font-size: var(--font-size-sm);
+      letter-spacing: 0.08em;
+
+      &-line {
+        width: 48px;
+        height: 2px;
+        background: currentColor;
+        opacity: 0.45;
+      }
     }
   }
 }
@@ -209,15 +332,32 @@ const certifications = [
   --card-accent: var(--color-dark-blue-500);
 
   display: flex;
+  flex: 0 0 var(--carousel-card-width);
   flex-direction: column;
+  width: var(--carousel-card-width);
+  min-width: 0;
   min-height: 410px;
   border: var(--stroke-md) solid var(--color-black-400);
   border-radius: var(--radius-xl);
   background: var(--color-beige-400);
   overflow: hidden;
+  opacity: 0.24;
+  filter: saturate(0.55);
+  scroll-snap-align: center;
+  scroll-snap-stop: always;
+  transform: scale(0.9);
+  transform-origin: center;
   transition:
+    opacity 0.45s var(--ease-smooth),
+    filter 0.45s var(--ease-smooth),
     transform 0.35s var(--ease-smooth),
     box-shadow 0.35s var(--ease-smooth);
+
+  &-active {
+    opacity: 1;
+    filter: none;
+    transform: scale(1);
+  }
 
   &:nth-child(2) {
     --card-accent: var(--color-orange-400);
@@ -228,7 +368,7 @@ const certifications = [
   }
 
   @include mixins.hover {
-    &:hover {
+    &:hover.certification-card-active {
       transform: translateY(-10px) rotate(-0.4deg);
       box-shadow: 0 18px 0 rgba(45, 42, 36, 0.12);
     }
@@ -241,7 +381,8 @@ const certifications = [
     min-height: 116px;
     padding: var(--space-md);
     border-bottom: var(--stroke-md) solid var(--color-black-400);
-    background-image: linear-gradient(rgba(45, 42, 36, 0.06) 1px, transparent 1px),
+    background-image:
+      linear-gradient(rgba(45, 42, 36, 0.06) 1px, transparent 1px),
       linear-gradient(90deg, rgba(45, 42, 36, 0.06) 1px, transparent 1px);
     background-size: 18px 18px;
   }
@@ -339,6 +480,12 @@ const certifications = [
       width: var(--icon-size-sm);
       --icon-color: currentColor;
     }
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .certification-card {
+    transition: none;
   }
 }
 </style>
