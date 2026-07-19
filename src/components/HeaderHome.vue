@@ -23,17 +23,19 @@ const ariaLabels = {
 };
 
 const isMounted = ref(false);
+const linksRef = ref<HTMLDivElement | null>(null);
 
-const barStyle = ref({ transform: "" });
-const ITEM_WIDTH = 128;
+const barStyle = ref({ transform: "", width: "" });
 
 const { isDarkTheme, hasScrolledIntoView } = useHeaderTheme();
 
 const updateBarPosition = () => {
-  const index = sections.indexOf(activeLink.value as ActiveLink);
-  const left = index * ITEM_WIDTH;
+  const link = linksRef.value?.querySelector<HTMLElement>(`[data-section="${activeLink.value}"]`);
+  if (!link) return;
+
   barStyle.value = {
-    transform: `translateX(${left}px)`,
+    transform: `translateX(${link.offsetLeft - 3}px)`,
+    width: `${link.offsetWidth}px`,
   };
 };
 
@@ -64,7 +66,7 @@ onMounted(() => {
 
 <template>
   <div :class="['header-home', { 'header-home-mounted': isMounted, 'header-home-isProjectPage': projectId !== null }]">
-    <div :class="['header-home-links', { 'header-home-links-dark': isDarkTheme }]">
+    <div ref="linksRef" :class="['header-home-links', { 'header-home-links-dark': isDarkTheme }]">
       <div
         :class="[
           'header-home-bar',
@@ -78,12 +80,14 @@ onMounted(() => {
         :is-active="activeLink === section"
         :class="[
           'header-home-link',
+          `header-home-link-${section}`,
           { 'header-home-link-active': activeLink === section && hasScrolledIntoView },
           'children-unclickable',
         ]"
         @click="handleLinkClick('#' + section)"
         :is-dark-theme="isDarkTheme"
         :aria-label="ariaLabels[section]"
+        :data-section="section"
         data-sound="click"
         data-hoversound="hover"
       >
@@ -148,6 +152,7 @@ onMounted(() => {
     border-radius: 100px;
     transition:
       transform 0.3s var(--ease-smooth),
+      width 0.3s var(--ease-smooth),
       opacity 0.1s ease-in-out,
       background-color 0.1s ease-in-out;
     z-index: 1;
@@ -174,6 +179,10 @@ onMounted(() => {
     width: 128px;
     white-space: nowrap;
     text-transform: uppercase;
+
+    &-certifications {
+      width: 164px;
+    }
 
     &-active {
       color: var(--color-white-400);
