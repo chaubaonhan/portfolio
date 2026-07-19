@@ -1,4 +1,4 @@
-import { computed, nextTick, onBeforeUnmount, onMounted, ref, watch, type Ref } from "vue";
+import { nextTick, onBeforeUnmount, onMounted, ref, watch, type Ref } from "vue";
 
 export const useCenteredCarousel = (itemCount: Ref<number>, initialIndex = 0) => {
   const trackRef = ref<HTMLElement | null>(null);
@@ -48,8 +48,15 @@ export const useCenteredCarousel = (itemCount: Ref<number>, initialIndex = 0) =>
     });
   };
 
-  const previous = () => goTo(activeIndex.value - 1);
-  const next = () => goTo(activeIndex.value + 1);
+  const previous = () => {
+    if (!itemCount.value) return;
+    goTo((activeIndex.value - 1 + itemCount.value) % itemCount.value);
+  };
+
+  const next = () => {
+    if (!itemCount.value) return;
+    goTo((activeIndex.value + 1) % itemCount.value);
+  };
 
   const handleKeydown = (event: KeyboardEvent) => {
     if (event.key === "ArrowLeft") {
@@ -102,8 +109,6 @@ export const useCenteredCarousel = (itemCount: Ref<number>, initialIndex = 0) =>
   return {
     trackRef,
     activeIndex,
-    isAtStart: computed(() => activeIndex.value <= 0),
-    isAtEnd: computed(() => activeIndex.value >= itemCount.value - 1),
     previous,
     next,
     goTo,
