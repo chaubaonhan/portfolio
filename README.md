@@ -7,6 +7,7 @@ An immersive portfolio built around the path from NLP research to production AI 
 - Scroll-driven 3D room, avatar, holographic NLP lab, and contact scene
 - First-author IEEE Access publication presented as a complete case study
 - Enterprise AI assistant and knowledge-retrieval project stories
+- A privacy-safe certification archive with verified IBM, Microsoft, and British Council credentials
 - GSAP/Lenis motion, custom shaders, spatial sound, and responsive interactions
 - Hash-based project routing that remains refresh-safe on GitHub Pages
 
