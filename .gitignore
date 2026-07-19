@@ -1,0 +1,19 @@
+node_modules/
+dist/
+.env
+.env.*
+!.env.example
+
+# Local visual QA artifacts
+.edge-*/
+*.png
+!public/meta/og-image.png
+
+# Local copy of legacy portfolio evidence; source files remain under /figure
+/public/figure/
+
+# Editor and operating-system files
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
