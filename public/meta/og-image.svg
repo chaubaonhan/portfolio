@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#f5efe6"/><stop offset="1" stop-color="#dfeef0"/></linearGradient><pattern id="p" width="34" height="34" patternUnits="userSpaceOnUse"><path d="M34 0H0V34" fill="none" stroke="#002474" stroke-opacity=".08"/></pattern></defs>
+  <rect width="1200" height="630" fill="url(#g)"/><rect width="1200" height="630" fill="url(#p)"/>
+  <g fill="none" stroke="#254bff" stroke-opacity=".32" stroke-width="2"><path d="M760 100L915 185 1040 92M760 100L845 360 1010 290 1110 470M845 360L680 495 1110 470"/></g>
+  <g fill="#254bff"><circle cx="760" cy="100" r="8"/><circle cx="915" cy="185" r="13"/><circle cx="1040" cy="92" r="7"/><circle cx="845" cy="360" r="18"/><circle cx="1010" cy="290" r="10"/><circle cx="1110" cy="470" r="14"/><circle cx="680" cy="495" r="8"/></g>
+  <text x="70" y="92" fill="#254bff" font-family="monospace" font-size="20" font-weight="700" letter-spacing="2">AI ENGINEER · NLP RESEARCHER</text>
+  <text x="62" y="270" fill="#191a17" font-family="Arial,sans-serif" font-size="110" font-weight="800" letter-spacing="-7">BAO NHAN</text>
+  <text x="62" y="372" fill="#191a17" font-family="Arial,sans-serif" font-size="110" font-weight="800" letter-spacing="-7">CHAU</text>
+  <g transform="translate(70 450) rotate(-2)"><rect width="485" height="64" rx="32" fill="#ff8400"/><text x="242" y="41" text-anchor="middle" fill="#fff" font-family="Arial,sans-serif" font-size="23" font-weight="700">FIRST-AUTHOR IEEE ACCESS · 2026</text></g>
+  <text x="70" y="585" fill="#5f5646" font-family="monospace" font-size="18">VIETNAMESE NLP / PRODUCTION AI SYSTEMS</text>
+</svg>
