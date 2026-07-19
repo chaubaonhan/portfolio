@@ -1,16 +1,40 @@
-# Portfolio Static Site
+# Bao Nhan Chau — AI Engineer & NLP Researcher
 
-This portfolio is a static site with no build tool or backend required.
+An immersive portfolio built around the path from NLP research to production AI systems.
 
-## Quick Start
+## Experience
 
-1. Edit the content in `index.html`.
-2. Push the repository to GitHub.
-3. Enable GitHub Pages for the main branch and root folder.
-4. Open the Pages URL to view the site.
+- Scroll-driven 3D room, avatar, holographic NLP lab, and contact scene
+- First-author IEEE Access publication presented as a complete case study
+- Enterprise AI assistant and knowledge-retrieval project stories
+- GSAP/Lenis motion, custom shaders, spatial sound, and responsive interactions
+- Hash-based project routing that remains refresh-safe on GitHub Pages
 
-## Main Files
+## Stack
 
-- `index.html`: Portfolio content
-- `style.css`: Visual design and responsive layout
-- `script.js`: Small script to update the current year
+- Vue 3 + TypeScript + Vite
+- Three.js + GLSL
+- GSAP + Lenis
+- Howler
+
+## Run locally
+
+```bash
+npm install
+npm run dev
+```
+
+Production validation:
+
+```bash
+npm run typecheck
+npm run build
+```
+
+## Deployment
+
+Pushes to `main` are built and deployed to GitHub Pages by `.github/workflows/deploy.yml`.
+
+## Design attribution
+
+The original interactive experience, 3D assets, animation system, and design were created by [David Heckhoff](https://david-hckh.com/) in [portfolio-2025](https://github.com/davidhckh/portfolio-2025). This adaptation preserves visible attribution and reworks the content and visual narrative for AI engineering and NLP research. See [license.md](./license.md).

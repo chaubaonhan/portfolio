@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#002474"/><stop offset="1" stop-color="#0086bb"/></linearGradient>
+    <filter id="shadow"><feDropShadow dx="20" dy="24" stdDeviation="22" flood-opacity=".28"/></filter>
+    <pattern id="grid" width="48" height="48" patternUnits="userSpaceOnUse"><path d="M48 0H0V48" fill="none" stroke="#81bdd8" stroke-opacity=".18"/></pattern>
+  </defs>
+  <rect width="1600" height="900" fill="url(#bg)"/>
+  <rect width="1600" height="900" fill="url(#grid)"/>
+  <circle cx="1360" cy="140" r="260" fill="none" stroke="#34bfff" stroke-opacity=".5" stroke-width="2"/>
+  <circle cx="1360" cy="140" r="190" fill="none" stroke="#34bfff" stroke-opacity=".35" stroke-width="2"/>
+  <g transform="translate(260 90) rotate(-3 520 360)" filter="url(#shadow)">
+    <rect width="1080" height="720" rx="8" fill="#fff"/>
+    <text x="70" y="76" fill="#00629b" font-family="Arial,sans-serif" font-size="36" font-weight="700">IEEE ACCESS</text>
+    <path d="M70 102H1010" stroke="#00629b" stroke-width="5"/>
+    <path d="M70 112H1010" stroke="#00629b" stroke-width="1"/>
+    <text x="70" y="165" fill="#00629b" font-family="Arial,sans-serif" font-size="18" font-weight="700" letter-spacing="2">RESEARCH ARTICLE · 2026</text>
+    <text x="70" y="232" fill="#151515" font-family="Arial,sans-serif" font-size="55" font-weight="700">
+      <tspan x="70" dy="0">A Large-Scale Vietnamese</tspan><tspan x="70" dy="64">News Dataset for Text</tspan><tspan x="70" dy="64">Classification</tspan>
+    </text>
+    <text x="70" y="450" fill="#00629b" font-family="Arial,sans-serif" font-size="22" font-weight="700">B. N. CHAU · D. DUONG · P. TRAN</text>
+    <path d="M70 488H1010" stroke="#c7c7c7"/>
+    <text x="70" y="535" fill="#222" font-family="Arial,sans-serif" font-size="17" font-weight="700" letter-spacing="2">ABSTRACT SNAPSHOT</text>
+    <g fill="#777"><rect x="70" y="562" width="560" height="10" rx="5"/><rect x="70" y="586" width="620" height="10" rx="5"/><rect x="70" y="610" width="510" height="10" rx="5"/></g>
+    <g transform="translate(740 520)"><rect width="270" height="125" rx="8" fill="#052e87"/><circle cx="55" cy="65" r="26" fill="#34bfff"/><circle cx="135" cy="42" r="18" fill="#ff8400"/><circle cx="211" cy="78" r="22" fill="#bae9ff"/><path d="M75 61L117 47M152 48L190 70" stroke="#fff" stroke-width="3"/></g>
+    <text x="70" y="682" fill="#555" font-family="monospace" font-size="16">doi: 10.1109/ACCESS.2026.3711994</text>
+  </g>
+  <g transform="translate(60 670) rotate(-7)"><rect width="360" height="86" rx="43" fill="#ff8400"/><text x="180" y="55" text-anchor="middle" fill="#fff" font-family="Arial,sans-serif" font-size="28" font-weight="700">FIRST-AUTHOR PAPER</text></g>
+</svg>
