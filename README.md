@@ -2,7 +2,7 @@
 
 An immersive portfolio built around the path from NLP research to production AI systems.
 
-https://chaubaonhan.github.io
+[https://chaubaonhan.github.io](https://chaubaonhan.github.io/portfolio/)
 
 ## Experience
 
