@@ -1,6 +1,8 @@
-# Bao Nhan Chau — AI Engineer & NLP Researcher
+# Bao Nhan Chau — AI Engineer & NLP Researcher 
 
 An immersive portfolio built around the path from NLP research to production AI systems.
+
+\url{https://chaubaonhan.github.io}
 
 ## Experience
 
