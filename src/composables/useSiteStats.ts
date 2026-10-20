@@ -70,7 +70,11 @@ export const useSiteStats = () => {
     const bucket = Math.floor(Date.now() / LIVE_BUCKET_MS);
     let current: number | null = null;
 
-    if (canWrite && !document.hidden && bucket !== lastLiveBucket) {
+    // Check in once per browser per bucket: reloads and extra tabs must not count as extra people.
+    const checkedInBucket = Number(storage.get("site-stats:live-bucket") ?? lastLiveBucket);
+
+    if (canWrite && !document.hidden && bucket !== checkedInBucket) {
+      storage.set("site-stats:live-bucket", String(bucket));
       current = await request("hit", `live-${bucket}`);
       if (current !== null) lastLiveBucket = bucket;
     } else {
