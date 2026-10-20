@@ -6,6 +6,7 @@ import About from "./About.vue";
 import Projects from "./Projects.vue";
 import Announcements from "./Announcements.vue";
 import Certifications from "./Certifications.vue";
+import Memories from "./Memories.vue";
 import Contact from "./Contact.vue";
 import Footer from "../../../components/Footer.vue";
 import { ref, onMounted, onUnmounted, watchEffect, computed, watch } from "vue";
@@ -163,6 +164,7 @@ watch(
       <Projects id="projects" @loaded="handleProjectsLoaded" />
       <Announcements id="announcements" />
       <Certifications id="certifications" />
+      <Memories id="memories" />
       <div ref="contactRef" class="home-contact">
         <Contact id="contact" v-if="projectsLoaded" />
       </div>

@@ -17,3 +17,7 @@ dist/
 Thumbs.db
 .vscode/
 .idea/
+
+# Personal memory photos/videos live in the private repo chaubaonhan/portfolio-media
+# (cloned here locally, fetched by the deploy workflow)
+/src/assets/memories/

@@ -174,8 +174,8 @@ const { trackRef, activeIndex, previous, next, handleKeydown, focusInactiveItem 
     position: absolute;
     bottom: 0;
     left: 0;
-    color: var(--color-beige-400);
-    --icon-color: var(--color-beige-400);
+    color: var(--color-beige-500);
+    --icon-color: var(--color-beige-500);
   }
 
   &-heading {
