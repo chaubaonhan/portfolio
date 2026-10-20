@@ -13,11 +13,11 @@ export interface Announcement {
 
 export const announcements: Announcement[] = [
   {
-    date: "2026",
-    category: "New paper",
-    title: "DART-VTC: Drift-Aware Replay and Temporal Adaptation",
+    date: "Dec 2026",
+    category: "Accepted · Upcoming",
+    title: "DART-VTC accepted at PACLIC 40",
     description:
-      "New first-author paper on keeping Vietnamese topic classifiers accurate on future years. DART-VTC recovers 40% of the temporal performance loss over a strong TF-IDF + SVM baseline.",
+      "My first-author paper on temporal drift in Vietnamese topic classification will appear at PACLIC 40 in Taipei, Taiwan (December 10–12, 2026). Proceedings upcoming.",
     to: "/project/dart-vtc",
     linkLabel: "Read summary",
   },

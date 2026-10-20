@@ -8,15 +8,15 @@ export default {
   theme: "dark",
   tags: ["nlp", "research", "dataset"],
   description:
-    "<strong>New first-author paper.</strong><br/><br/><em>DART-VTC: Drift-Aware Replay and Temporal Adaptation for Large-Scale Vietnamese Topic Classification</em>, by B. N. Chau, T. K. Tran, and P. Tran. Building on the BN-VN3S benchmark, the paper asks whether a topic classifier trained on past news stays accurate on future years—and how to recover the accuracy it loses.",
+    "<strong>First-author paper accepted at PACLIC 40</strong> (The 40th Pacific Asia Conference on Language, Information and Computation, Taipei, Taiwan, December 10–12, 2026). Proceedings upcoming.<br/><br/><em>DART-VTC: Drift-Aware Replay and Temporal Adaptation for Large-Scale Vietnamese Topic Classification</em>, by B. N. Chau, T. K. Tran, and P. Tran. Building on the BN-VN3S benchmark, the paper asks whether a topic classifier trained on past news stays accurate on future years—and how to recover the accuracy it loses.",
   components: [
     {
       type: "media",
       props: {
         type: "image",
         src: dartPreview,
-        alt: "DART-VTC paper preview with title, authors, and headline results",
-        caption: "DART-VTC · Ton Duc Thang University · 2026",
+        alt: "DART-VTC paper preview with title, authors, PACLIC 40 acceptance, and headline results",
+        caption: "Accepted at PACLIC 40 · Taipei, December 2026 · Proceedings upcoming",
       },
     },
     {

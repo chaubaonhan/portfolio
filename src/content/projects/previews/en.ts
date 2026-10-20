@@ -10,7 +10,7 @@ export default [
     title: "DART-VTC",
     slug: "dart-vtc",
     thumbnail: dartPreview,
-    description: "New paper on temporal drift in Vietnamese topic classification",
+    description: "First-author paper accepted at PACLIC 40 (upcoming)",
   },
   {
     title: "Vietnamese News Dataset",
