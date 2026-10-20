@@ -27,20 +27,20 @@ export const memories: Memory[] = [
   {
     image: "graduation-2026.jpg",
     alt: "Chau Bao Nhan receiving a Bachelor of Computer Science diploma on stage at Ton Duc Thang University",
-    date: "2026",
-    title: "Graduation Day",
+    date: "Oct 17, 2026",
+    title: "Receiving My Degree",
     place: "Ton Duc Thang University · Ho Chi Minh City",
     story:
-      "Receiving my Bachelor's degree in Computer Science from Ton Duc Thang University.\n\nThis stage closes the chapter where I built BN-VN3S, published my first-author paper in IEEE Access, and wrote DART-VTC, now accepted at PACLIC 40.",
+      "I officially graduated with a Bachelor's degree in Computer Science from Ton Duc Thang University in September 2026, and received my diploma on stage at the graduation ceremony on October 17, 2026.\n\nThis stage closes the chapter where I built BN-VN3S, published my first-author paper in IEEE Access, and wrote DART-VTC, now accepted at PACLIC 40.",
     focus: "50% 45%",
   },
   {
     image: "graduation-ceremony-2026.mp4",
     alt: "Short video from the graduation ceremony at Ton Duc Thang University",
-    date: "2026",
+    date: "Oct 17, 2026",
     title: "Graduation Ceremony",
     place: "Ton Duc Thang University · Ho Chi Minh City",
     story:
-      "A short clip from the graduation ceremony at Ton Duc Thang University, the day I officially completed my Bachelor's degree in Computer Science.",
+      "A short clip from the graduation ceremony at Ton Duc Thang University on October 17, 2026, a month after completing my Bachelor's degree in Computer Science in September.",
   },
 ];

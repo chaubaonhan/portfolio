@@ -3,6 +3,7 @@ import Header from "./components/Header.vue";
 import { useTranslations } from "./i18n/composables/useTranslations";
 import { usePreloader } from "./composables/usePreloader";
 import Cursor from "./components/Cursor.vue";
+import SiteStats from "./components/SiteStats.vue";
 import { useAgent } from "./composables/useAgent";
 import { useMusic } from "./features/sounds/composables/useMusic";
 import { useHowler } from "./features/sounds/composables/useHowler";
@@ -51,6 +52,7 @@ const { isTouch } = useAgent();
     </div>
   </div>
 
+  <SiteStats v-show="!projectVisible" />
   <Cursor v-if="!isTouch" />
 </template>
 
