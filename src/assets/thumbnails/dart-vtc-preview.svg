@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#001341"/><stop offset="1" stop-color="#234ba2"/></linearGradient>
+    <filter id="shadow"><feDropShadow dx="20" dy="24" stdDeviation="22" flood-opacity=".3"/></filter>
+    <pattern id="grid" width="48" height="48" patternUnits="userSpaceOnUse"><path d="M48 0H0V48" fill="none" stroke="#81bdd8" stroke-opacity=".16"/></pattern>
+  </defs>
+  <rect width="1600" height="900" fill="url(#bg)"/>
+  <rect width="1600" height="900" fill="url(#grid)"/>
+  <g fill="none" stroke="#d8ff42" stroke-opacity=".55" stroke-width="3">
+    <path d="M1180 120C1290 60 1430 90 1500 190"/>
+    <path d="M1500 190l-6-34M1500 190l-33-10"/>
+  </g>
+  <g transform="translate(250 92) rotate(-2.5 540 360)" filter="url(#shadow)">
+    <rect width="1080" height="720" rx="8" fill="#fff"/>
+    <text x="70" y="76" fill="#052e87" font-family="Arial,sans-serif" font-size="34" font-weight="700">DART-VTC</text>
+    <text x="1010" y="76" text-anchor="end" fill="#0086bb" font-family="monospace" font-size="20">2019 → 2025</text>
+    <path d="M70 102H1010" stroke="#052e87" stroke-width="5"/>
+    <path d="M70 112H1010" stroke="#052e87" stroke-width="1"/>
+    <text x="70" y="165" fill="#0086bb" font-family="Arial,sans-serif" font-size="18" font-weight="700" letter-spacing="2">RESEARCH ARTICLE · 2026</text>
+    <text x="70" y="228" fill="#151515" font-family="Arial,sans-serif" font-size="50" font-weight="700">
+      <tspan x="70" dy="0">Drift-Aware Replay and Temporal</tspan><tspan x="70" dy="60">Adaptation for Large-Scale</tspan><tspan x="70" dy="60">Vietnamese Topic Classification</tspan>
+    </text>
+    <text x="70" y="440" fill="#052e87" font-family="Arial,sans-serif" font-size="22" font-weight="700">B. N. CHAU · T. K. TRAN · P. TRAN</text>
+    <path d="M70 478H1010" stroke="#c7c7c7"/>
+    <text x="70" y="525" fill="#222" font-family="Arial,sans-serif" font-size="17" font-weight="700" letter-spacing="2">FUTURE-YEAR MACRO-F1</text>
+    <g font-family="Arial,sans-serif" font-size="18" fill="#555">
+      <text x="70" y="572">Static SVM</text>
+      <text x="70" y="622">DART-VTC</text>
+    </g>
+    <rect x="210" y="555" width="364" height="24" rx="12" fill="#c7c7c7"/>
+    <rect x="210" y="605" width="420" height="24" rx="12" fill="#ff8400"/>
+    <g font-family="monospace" font-size="18" font-weight="700">
+      <text x="588" y="573" fill="#555">91.10</text>
+      <text x="644" y="623" fill="#ff8400">91.69</text>
+    </g>
+    <g transform="translate(760 520)">
+      <rect width="250" height="125" rx="8" fill="#052e87"/>
+      <text x="125" y="62" text-anchor="middle" fill="#d8ff42" font-family="Arial,sans-serif" font-size="46" font-weight="700">40%</text>
+      <text x="125" y="96" text-anchor="middle" fill="#e1f5ff" font-family="monospace" font-size="15">TEMPORAL LOSS RECOVERED</text>
+    </g>
+    <text x="70" y="682" fill="#555" font-family="monospace" font-size="16">year-aware · replay buffer · drift-aware weighting</text>
+  </g>
+  <g transform="translate(60 670) rotate(-7)"><rect width="360" height="86" rx="43" fill="#ff8400"/><text x="180" y="55" text-anchor="middle" fill="#fff" font-family="Arial,sans-serif" font-size="28" font-weight="700">NEW · FIRST AUTHOR</text></g>
+</svg>

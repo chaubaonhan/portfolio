@@ -12,12 +12,13 @@ const handleLinkClick = (link: string) => {
   lenis.value.scrollTo(link);
 };
 
-type ActiveLink = "about" | "projects" | "certifications" | "contact";
+type ActiveLink = "about" | "projects" | "announcements" | "certifications" | "contact";
 const activeLink = ref<ActiveLink | null>(null);
-const sections: ActiveLink[] = ["about", "projects", "certifications", "contact"];
+const sections: ActiveLink[] = ["about", "projects", "announcements", "certifications", "contact"];
 const ariaLabels = {
   about: t("about"),
   projects: t("projects"),
+  announcements: t("announcements"),
   certifications: t("certifications"),
   contact: t("contact"),
 };

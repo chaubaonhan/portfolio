@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900">
+  <rect width="1600" height="900" fill="#052e87"/>
+  <text x="110" y="115" fill="#e1f5ff" font-family="Arial,sans-serif" font-size="52" font-weight="700">Train on the past, test on the future</text>
+  <text x="110" y="165" fill="#81bdd8" font-family="monospace" font-size="22">DRIFT ANALYZER → WEIGHTING + REPLAY → YEAR-AWARE CLASSIFIER</text>
+  <g font-family="Arial,sans-serif" font-weight="700" text-anchor="middle">
+    <g transform="translate(110 300)">
+      <rect width="300" height="200" rx="16" fill="#002474" stroke="#81bdd8" stroke-width="3"/>
+      <text x="150" y="80" fill="#e1f5ff" font-size="30">Yearly corpus</text>
+      <text x="150" y="125" fill="#81bdd8" font-family="monospace" font-size="22">2019 – 2025</text>
+    </g>
+    <path d="M425 400H495" stroke="#81bdd8" stroke-width="4"/>
+    <path d="M495 400l-16-10v20z" fill="#81bdd8"/>
+    <g transform="translate(510 270)">
+      <rect width="330" height="260" rx="16" fill="#ff8400"/>
+      <text x="165" y="62" fill="#fff" font-size="28">Temporal drift</text>
+      <text x="165" y="96" fill="#fff" font-size="28">analyzer</text>
+      <g fill="#001341" font-family="monospace" font-size="21" font-weight="400">
+        <text x="165" y="152">label shift</text>
+        <text x="165" y="186">lexical drift (JSD)</text>
+        <text x="165" y="220">confusion shift</text>
+      </g>
+    </g>
+    <path d="M855 340L935 290M855 460L935 510" stroke="#81bdd8" stroke-width="4"/>
+    <g transform="translate(940 215)">
+      <rect width="300" height="130" rx="16" fill="#0086bb"/>
+      <text x="150" y="58" fill="#fff" font-size="26">Drift-aware</text>
+      <text x="150" y="92" fill="#fff" font-size="26">sample weighting</text>
+    </g>
+    <g transform="translate(940 455)">
+      <rect width="300" height="130" rx="16" fill="#0086bb"/>
+      <text x="150" y="58" fill="#fff" font-size="26">Replay buffer</text>
+      <text x="150" y="92" fill="#e1f5ff" font-family="monospace" font-size="19" font-weight="400">prototype + boundary</text>
+    </g>
+    <path d="M1255 280L1320 380M1255 520L1320 420" stroke="#81bdd8" stroke-width="4"/>
+    <g transform="translate(1330 310)">
+      <rect width="190" height="180" rx="16" fill="#d8ff42"/>
+      <text x="95" y="74" fill="#001341" font-size="24">Year-aware</text>
+      <text x="95" y="106" fill="#001341" font-size="24">classifier</text>
+      <text x="95" y="142" fill="#052e87" font-family="monospace" font-size="18" font-weight="400">[TF-IDF; year]</text>
+    </g>
+  </g>
+  <g font-family="monospace" font-size="22" fill="#e1f5ff">
+    <text x="110" y="700">TRAIN ≤ τ−1</text>
+    <text x="110" y="740" fill="#81bdd8">no labels from the target year</text>
+    <text x="1520" y="700" text-anchor="end">TEST = τ ∈ {2023, 2024, 2025}</text>
+    <text x="1520" y="740" text-anchor="end" fill="#81bdd8">rolling-year evaluation</text>
+  </g>
+  <path d="M110 790H1520" stroke="#81bdd8" stroke-opacity=".4" stroke-width="2" stroke-dasharray="10 10"/>
+</svg>

@@ -183,8 +183,8 @@ onMounted(loadPreviews);
       position: absolute;
       bottom: 0;
       left: 0;
-      color: var(--color-beige-600);
-      --icon-color: var(--color-beige-600);
+      color: var(--color-beige-500);
+      --icon-color: var(--color-beige-500);
     }
   }
 
