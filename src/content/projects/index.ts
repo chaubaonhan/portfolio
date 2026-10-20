@@ -1,6 +1,6 @@
 import type { Locale } from "../../i18n/types";
 
-export const projectIds = ["vietnamese-news", "enterprise-assistant", "knowledge-retrieval"];
+export const projectIds = ["dart-vtc", "vietnamese-news", "enterprise-assistant", "knowledge-retrieval"];
 
 function simplifyModules(glob: Record<string, any>) {
   const result: Record<string, any> = {};

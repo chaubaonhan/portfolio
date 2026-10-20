@@ -4,6 +4,7 @@ import Hero from "./Hero.vue";
 import About from "./About.vue";
 //import AboutSections from "../features/about/Sections.vue";
 import Projects from "./Projects.vue";
+import Announcements from "./Announcements.vue";
 import Certifications from "./Certifications.vue";
 import Contact from "./Contact.vue";
 import Footer from "../../../components/Footer.vue";
@@ -160,6 +161,7 @@ watch(
         <div class="about-spacer" ref="aboutSpacerRef" id="about"></div>
       </div>
       <Projects id="projects" @loaded="handleProjectsLoaded" />
+      <Announcements id="announcements" />
       <Certifications id="certifications" />
       <div ref="contactRef" class="home-contact">
         <Contact id="contact" v-if="projectsLoaded" />

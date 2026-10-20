@@ -1,3 +1,4 @@
+import dartPreview from "../../../assets/thumbnails/dart-vtc-preview.svg";
 import paperPreview from "../../../assets/thumbnails/paper-preview.svg";
 import chatbotPreview from "../../../assets/images/projects/enterprise/chatbot.gif";
 import retrievalPreview from "../../../assets/thumbnails/retrieval-preview.svg";
@@ -5,6 +6,12 @@ import retrievalPreview from "../../../assets/thumbnails/retrieval-preview.svg";
 import type { ProjectPreview } from "../../types";
 
 export default [
+  {
+    title: "DART-VTC",
+    slug: "dart-vtc",
+    thumbnail: dartPreview,
+    description: "New paper on temporal drift in Vietnamese topic classification",
+  },
   {
     title: "Vietnamese News Dataset",
     slug: "vietnamese-news",
