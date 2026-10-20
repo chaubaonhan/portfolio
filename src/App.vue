@@ -38,14 +38,28 @@ const blockMediaEvent = (event: Event) => {
   if (isProtectedMedia(event.target)) event.preventDefault();
 };
 
+// Media is shown through one-off blob: URLs (see useBlobSrc). Once an element has loaded its file,
+// revoke the URL so copying it from dev tools leads nowhere; the element keeps displaying the media.
+const revokeLoadedBlob = (event: Event) => {
+  const target = event.target;
+  if (!(target instanceof HTMLImageElement || target instanceof HTMLVideoElement)) return;
+  const src = target.currentSrc || target.src;
+  if (src.startsWith("blob:")) URL.revokeObjectURL(src);
+};
+
 onMounted(() => {
   document.addEventListener("contextmenu", blockMediaEvent);
   document.addEventListener("dragstart", blockMediaEvent);
+  // load / loadeddata do not bubble, so listen in the capture phase.
+  document.addEventListener("load", revokeLoadedBlob, true);
+  document.addEventListener("loadeddata", revokeLoadedBlob, true);
 });
 
 onUnmounted(() => {
   document.removeEventListener("contextmenu", blockMediaEvent);
   document.removeEventListener("dragstart", blockMediaEvent);
+  document.removeEventListener("load", revokeLoadedBlob, true);
+  document.removeEventListener("loadeddata", revokeLoadedBlob, true);
 });
 </script>
 

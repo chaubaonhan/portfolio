@@ -96,7 +96,7 @@ const paragraphs = (story: string) => story.split(/\n\s*\n/);
                   muted
                   loop
                   playsinline
-                  preload="metadata"
+                  preload="auto"
                   controlslist="nodownload noremoteplayback"
                   disablepictureinpicture
                 ></video>

@@ -1,10 +1,12 @@
 import { defineConfig } from "vite";
 import vue from "@vitejs/plugin-vue";
 import glsl from "vite-plugin-glsl";
+import { protectedMedia } from "./vite-plugins/protected-media";
 
 export default defineConfig({
   base: process.env.GITHUB_ACTIONS ? "/portfolio/" : "/",
   plugins: [
+    protectedMedia(),
     vue(),
     glsl({
       include: ["**/*.glsl", "**/*.vert", "**/*.frag"],
