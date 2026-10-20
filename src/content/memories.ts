@@ -1,11 +1,11 @@
 // Newest first — the first item is shown as the active card.
 //
-// Photos and videos are NOT stored in this public repo. src/assets/memories/ is a local clone of the
+// Photos and videos are NOT stored in this public repo. src/media/ is a local clone of the
 // private repo chaubaonhan/portfolio-media, which the deploy workflow fetches at build time.
 //
 // To add a memory:
-//   1. Copy the photo or short video into src/assets/memories/ (jpg, png, webp, mp4, or webm),
-//      then commit and push it from inside that folder (it pushes to the private repo).
+//   1. Copy the photo or short video into src/media/memories/ (jpg, png, webp, mp4, or webm),
+//      then commit and push it from inside src/media/ (it pushes to the private repo).
 //      Videos play muted on loop — keep them short and small (ideally under 10 MB).
 //   2. Add an entry below with `image` set to that exact file name, then commit and push this repo.
 // Entries whose file is missing are skipped, so the order of the two pushes never breaks the build.

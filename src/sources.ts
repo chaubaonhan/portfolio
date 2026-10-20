@@ -3,21 +3,21 @@ import labModel from "./assets/models/lab.glb";
 import roomModel from "./assets/models/room.glb";
 import contactModel from "./assets/models/contact.glb";
 
-import contactTexture from "./assets/textures/contact.webp";
-import contactShadowTexture from "./assets/textures/contact-shadow.webp";
-import desktopsTexture from "./assets/textures/desktops.webp";
-import diffuseMap from "./assets/textures/diffuse-map.png";
-import faceTexture from "./assets/textures/face-spritesheet.png";
-import headTexture from "./assets/textures/head.webp";
-import iconSpritesheet from "./assets/textures/icon-spritesheet.webp";
-import matcapBlack from "./assets/textures/matcap-black.webp";
-import matcapGray from "./assets/textures/matcap-gray.webp";
-import matcapSkin from "./assets/textures/matcap-skin.webp";
-import matcapWhite from "./assets/textures/matcap-white.webp";
-import numbersBitmap from "./assets/textures/numbers-bitmap.webp";
-import roomTexture from "./assets/textures/room.webp";
-import roomShadowTexture from "./assets/textures/room-shadow.webp";
-import hologramPlaneTexture from "./assets/textures/hologram-plane.webp";
+import contactTexture from "./media/textures/contact.webp";
+import contactShadowTexture from "./media/textures/contact-shadow.webp";
+import desktopsTexture from "./media/textures/desktops.webp";
+import diffuseMap from "./media/textures/diffuse-map.png";
+import faceTexture from "./media/textures/face-spritesheet.png";
+import headTexture from "./media/textures/head.webp";
+import iconSpritesheet from "./media/textures/icon-spritesheet.webp";
+import matcapBlack from "./media/textures/matcap-black.webp";
+import matcapGray from "./media/textures/matcap-gray.webp";
+import matcapSkin from "./media/textures/matcap-skin.webp";
+import matcapWhite from "./media/textures/matcap-white.webp";
+import numbersBitmap from "./media/textures/numbers-bitmap.webp";
+import roomTexture from "./media/textures/room.webp";
+import roomShadowTexture from "./media/textures/room-shadow.webp";
+import hologramPlaneTexture from "./media/textures/hologram-plane.webp";
 
 type Source = {
   name: string;

@@ -22,7 +22,10 @@ An immersive portfolio built around the path from NLP research to production AI 
 
 ## Run locally
 
+Images and videos are kept in a private repository and are not part of this repo. With access, clone them into `src/media/` first:
+
 ```bash
+git clone git@github.com:chaubaonhan/portfolio-media.git src/media
 npm install
 npm run dev
 ```
@@ -36,7 +39,7 @@ npm run build
 
 ## Deployment
 
-Pushes to `main` are built and deployed to GitHub Pages by `.github/workflows/deploy.yml`.
+Pushes to `main` are built and deployed to GitHub Pages by `.github/workflows/deploy.yml`, which checks out the private media repository with a read-only deploy key (`MEDIA_DEPLOY_KEY` secret) before building.
 
 ## Design attribution
 

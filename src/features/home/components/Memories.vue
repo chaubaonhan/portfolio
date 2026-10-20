@@ -1,13 +1,14 @@
 <script setup lang="ts">
-import { computed, ref, watch } from "vue";
+import { computed, reactive, ref, watch } from "vue";
 import Banner from "../../../components/Banner.vue";
 import ButtonRound from "../../../components/ButtonRound.vue";
 import NotchSection from "../../../components/NotchSection.vue";
 import ArrowRight from "../../../components/icons/ArrowRight.vue";
 import { useCenteredCarousel } from "../../../composables/useCenteredCarousel";
+import { toBlobUrl } from "../../../composables/useBlobSrc";
 import { memories as allMemories } from "../../../content/memories";
 
-const imageModules = import.meta.glob<string>("../../../assets/memories/*.{jpg,jpeg,png,webp,mp4,webm}", {
+const imageModules = import.meta.glob<string>("../../../media/memories/*.{jpg,jpeg,png,webp,mp4,webm}", {
   eager: true,
   import: "default",
 });
@@ -18,6 +19,11 @@ const imageUrls = Object.fromEntries(
 
 // Skip entries whose media file is not available (e.g. a clone without access to the private media repo).
 const memories = allMemories.filter((memory) => memory.image in imageUrls);
+
+const mediaUrls = reactive<Record<string, string>>({});
+memories.forEach(async (memory) => {
+  mediaUrls[memory.image] = await toBlobUrl(imageUrls[memory.image] as string);
+});
 
 const memoryCount = computed(() => memories.length);
 const { trackRef, activeIndex, previous, next, handleKeydown, focusInactiveItem } = useCenteredCarousel(memoryCount);
@@ -83,7 +89,7 @@ const paragraphs = (story: string) => story.split(/\n\s*\n/);
               <div class="memory-card-photo">
                 <video
                   v-if="isVideo(memory.image)"
-                  :src="imageUrls[memory.image]"
+                  :src="mediaUrls[memory.image]"
                   :aria-label="memory.alt"
                   :style="{ objectPosition: memory.focus ?? '50% 50%' }"
                   autoplay
@@ -91,10 +97,12 @@ const paragraphs = (story: string) => story.split(/\n\s*\n/);
                   loop
                   playsinline
                   preload="metadata"
+                  controlslist="nodownload noremoteplayback"
+                  disablepictureinpicture
                 ></video>
                 <img
                   v-else
-                  :src="imageUrls[memory.image]"
+                  :src="mediaUrls[memory.image]"
                   :alt="memory.alt"
                   :style="{ objectPosition: memory.focus ?? '50% 50%' }"
                   loading="lazy"

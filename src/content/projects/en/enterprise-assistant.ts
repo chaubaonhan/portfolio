@@ -1,4 +1,4 @@
-import chatbotPreview from "../../../assets/images/projects/enterprise/chatbot.gif";
+import chatbotPreview from "../../../media/images/projects/enterprise/chatbot.gif";
 
 import type { ProjectContent } from "../../types";
 

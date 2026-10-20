@@ -21,12 +21,12 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Checkout private memory media
+      - name: Checkout private media
         uses: actions/checkout@v4
         with:
           repository: chaubaonhan/portfolio-media
           ssh-key: ${{ secrets.MEDIA_DEPLOY_KEY }}
-          path: src/assets/memories
+          path: src/media
           persist-credentials: false
 
       - name: Setup Node

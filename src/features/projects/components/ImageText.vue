@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { computed } from "vue";
 import ProjectComponent from "./ProjectComponent.vue";
+import { useBlobSrc } from "../../../composables/useBlobSrc";
 
 import type { ProjectComponentProps } from "../types";
 
@@ -13,6 +14,7 @@ export interface Props {
 }
 
 const props = defineProps<Props>();
+const imageSrc = useBlobSrc(() => props.src);
 
 const imageClasses = computed(() => {
   return {
@@ -40,7 +42,7 @@ const contentClasses = computed(() => {
 
 <template>
   <div :class="imageClasses">
-    <img :src="props.src" :alt="props.alt" loading="lazy" fetchpriority="high" :class="imageContentClasses" />
+    <img :src="imageSrc" :alt="props.alt" loading="lazy" fetchpriority="high" :class="imageContentClasses" />
   </div>
   <div :class="contentClasses" v-if="props.component">
     <ProjectComponent :type="props.component.type" :props="props.component.props" :index="0" />

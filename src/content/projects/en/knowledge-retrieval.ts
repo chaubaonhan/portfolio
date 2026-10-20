@@ -1,4 +1,4 @@
-import retrievalPreview from "../../../assets/thumbnails/retrieval-preview.svg";
+import retrievalPreview from "../../../media/thumbnails/retrieval-preview.svg";
 
 import type { ProjectContent } from "../../types";
 

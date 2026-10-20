@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { onMounted, onUnmounted } from "vue";
 import Header from "./components/Header.vue";
 import { useTranslations } from "./i18n/composables/useTranslations";
 import { usePreloader } from "./composables/usePreloader";
@@ -28,6 +29,24 @@ useRouteObserver();
 useClickSound();
 //useHoverSound();
 const { isTouch } = useAgent();
+
+// Discourage saving media: no context menu or drag on images, videos, and the 3D canvas.
+const isProtectedMedia = (target: EventTarget | null) =>
+  target instanceof Element && !!target.closest("img, video, canvas, picture");
+
+const blockMediaEvent = (event: Event) => {
+  if (isProtectedMedia(event.target)) event.preventDefault();
+};
+
+onMounted(() => {
+  document.addEventListener("contextmenu", blockMediaEvent);
+  document.addEventListener("dragstart", blockMediaEvent);
+});
+
+onUnmounted(() => {
+  document.removeEventListener("contextmenu", blockMediaEvent);
+  document.removeEventListener("dragstart", blockMediaEvent);
+});
 </script>
 
 <template>
@@ -57,6 +76,14 @@ const { isTouch } = useAgent();
 </template>
 
 <style lang="scss">
+img,
+video,
+canvas {
+  -webkit-user-drag: none;
+  -webkit-touch-callout: none;
+  user-select: none;
+}
+
 .home-wrapper-projectIsReady {
   visibility: hidden;
   position: fixed;

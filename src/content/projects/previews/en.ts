@@ -1,7 +1,7 @@
-import dartPreview from "../../../assets/thumbnails/dart-vtc-preview.svg";
-import paperPreview from "../../../assets/thumbnails/paper-preview.svg";
-import chatbotPreview from "../../../assets/images/projects/enterprise/chatbot.gif";
-import retrievalPreview from "../../../assets/thumbnails/retrieval-preview.svg";
+import dartPreview from "../../../media/thumbnails/dart-vtc-preview.svg";
+import paperPreview from "../../../media/thumbnails/paper-preview.svg";
+import chatbotPreview from "../../../media/images/projects/enterprise/chatbot.gif";
+import retrievalPreview from "../../../media/thumbnails/retrieval-preview.svg";
 
 import type { ProjectPreview } from "../../types";
 

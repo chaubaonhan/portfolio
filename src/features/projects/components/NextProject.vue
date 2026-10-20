@@ -1,17 +1,20 @@
 <script setup lang="ts">
 import ArrowRight from "../../../components/icons/ArrowRight.vue";
 import { t } from "../../../i18n/utils/translate";
+import { useBlobSrc } from "../../../composables/useBlobSrc";
 
 import type { ProjectPreview } from "../../../content/types";
 
 const { project } = defineProps<{
   project: ProjectPreview;
 }>();
+
+const thumbnailSrc = useBlobSrc(() => project.thumbnail);
 </script>
 
 <template>
   <div class="next-project children-unclickable" data-hoversound="hover">
-    <img :src="project.thumbnail" :alt="project.title" class="next-project-image" />
+    <img :src="thumbnailSrc" :alt="project.title" class="next-project-image" />
     <div class="next-project-content">
       <p class="next-project-prefix">{{ t("next-project") }}:</p>
       <h3 class="next-project-title">{{ project.title }}</h3>

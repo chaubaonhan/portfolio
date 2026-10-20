@@ -9,6 +9,7 @@ import ButtonRound from "../../../components/ButtonRound.vue";
 import { t } from "../../../i18n/utils/translate";
 import { social } from "../../../content/social";
 import Plus from "../../../components/icons/Plus.vue";
+import { useBlobSrc } from "../../../composables/useBlobSrc";
 
 import type { ProjectPreview } from "../../../content/types";
 
@@ -19,6 +20,8 @@ const imageRef = ref<HTMLImageElement | null>(null);
 const props = defineProps<{
   preview?: ProjectPreview;
 }>();
+
+const thumbnailSrc = useBlobSrc(() => props.preview?.thumbnail);
 
 onMounted(async () => {
   if (!wrapperRef.value || ScrollTrigger.isInViewport(wrapperRef.value)) {
@@ -58,7 +61,7 @@ onUnmounted(() => {
     <div class="preview-card-top" ref="wrapperRef">
       <div class="preview-card-image-wrapper">
         <div class="preview-card-image-container">
-          <img :src="props.preview.thumbnail" :alt="props.preview.title" class="preview-card-image" ref="imageRef" />
+          <img :src="thumbnailSrc" :alt="props.preview.title" class="preview-card-image" ref="imageRef" />
         </div>
       </div>
       <div class="preview-card-overlay">

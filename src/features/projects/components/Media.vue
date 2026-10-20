@@ -2,6 +2,7 @@
 import { computed, ref, onMounted, watchEffect } from "vue";
 import gsap from "gsap";
 import Notch from "../../../components/Notch.vue";
+import { useBlobSrc } from "../../../composables/useBlobSrc";
 
 const wrapperRef = ref<HTMLDivElement | null>(null);
 const mediaRef = ref<HTMLVideoElement | HTMLImageElement | null>(null);
@@ -17,6 +18,7 @@ export interface Props {
 }
 
 const props = defineProps<Props>();
+const mediaSrc = useBlobSrc(() => props.src);
 
 const wrapperClasses = computed(() => {
   return {
@@ -57,7 +59,7 @@ onMounted(async () => {
     <div class="project-media-content" ref="mediaContentRef">
       <img
         v-if="props.type === 'image'"
-        :src="props.src"
+        :src="mediaSrc"
         :alt="props.alt"
         loading="lazy"
         fetchpriority="high"
@@ -66,17 +68,17 @@ onMounted(async () => {
       />
       <video
         v-else
-        :src="props.src"
+        :src="mediaSrc"
         autoplay
         muted
         loop
         playsinline
         preload="metadata"
+        controlslist="nodownload noremoteplayback"
+        disablepictureinpicture
         class="project-media-video"
         ref="mediaRef"
-      >
-        <source :src="props.src" type="video/mp4" />
-      </video>
+      ></video>
     </div>
     <div class="project-media-caption" v-if="props.caption">
       <Notch class="project-media-caption-notch project-media-caption-notch-left" />

@@ -1,5 +1,5 @@
-import dartPreview from "../../../assets/thumbnails/dart-vtc-preview.svg";
-import dartFramework from "../../../assets/images/projects/dart-vtc-framework.svg";
+import dartPreview from "../../../media/thumbnails/dart-vtc-preview.svg";
+import dartFramework from "../../../media/images/projects/dart-vtc-framework.svg";
 
 import type { ProjectContent } from "../../types";
 

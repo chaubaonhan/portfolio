@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed } from "vue";
+import { computed, reactive } from "vue";
 import Banner from "../../../components/Banner.vue";
 import ButtonRound from "../../../components/ButtonRound.vue";
 import Link from "../../../components/Link.vue";
@@ -7,9 +7,10 @@ import NotchSection from "../../../components/NotchSection.vue";
 import ArrowRight from "../../../components/icons/ArrowRight.vue";
 import ArrowRightLong from "../../../components/icons/ArrowRightLong.vue";
 import { useCenteredCarousel } from "../../../composables/useCenteredCarousel";
-import aptisLogo from "../../../assets/certifications/aptis.png";
-import ibmLogo from "../../../assets/certifications/ibm.svg";
-import microsoftLogo from "../../../assets/certifications/microsoft.svg";
+import { toBlobUrl } from "../../../composables/useBlobSrc";
+import aptisLogo from "../../../media/certifications/aptis.png";
+import ibmLogo from "../../../media/certifications/ibm.svg";
+import microsoftLogo from "../../../media/certifications/microsoft.svg";
 
 const certifications = [
   {
@@ -40,6 +41,11 @@ const certifications = [
     href: null,
   },
 ] as const;
+
+const logoUrls = reactive<Record<string, string>>({});
+certifications.forEach(async (certification) => {
+  logoUrls[certification.logo] = await toBlobUrl(certification.logo);
+});
 
 const certificationCount = computed(() => certifications.length);
 const { trackRef, activeIndex, previous, next, handleKeydown, focusInactiveItem } =
@@ -78,7 +84,7 @@ const { trackRef, activeIndex, previous, next, handleKeydown, focusInactiveItem 
           <div class="certification-card-top">
             <span class="certification-card-index">0{{ index + 1 }}</span>
             <div class="certification-card-logo">
-              <img :src="certification.logo" :alt="certification.logoAlt" />
+              <img v-if="logoUrls[certification.logo]" :src="logoUrls[certification.logo]" :alt="certification.logoAlt" />
             </div>
           </div>
 

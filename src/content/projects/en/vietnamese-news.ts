@@ -1,5 +1,5 @@
-import paperPreview from "../../../assets/thumbnails/paper-preview.svg";
-import paperShift from "../../../assets/images/projects/paper-shift.svg";
+import paperPreview from "../../../media/thumbnails/paper-preview.svg";
+import paperShift from "../../../media/images/projects/paper-shift.svg";
 
 import type { ProjectContent } from "../../types";
 
