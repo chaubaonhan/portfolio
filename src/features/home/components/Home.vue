@@ -93,7 +93,6 @@ onMounted(() => {
   }
 
   gsap.ticker.add(updateCursor);
-
 });
 
 onUnmounted(() => {
@@ -114,8 +113,8 @@ const handleProjectsLoaded = () => {
 
 watchEffect((onInvalidate) => {
   if (
-    projectsLoaded &&
-    threeInitialized &&
+    projectsLoaded.value &&
+    threeInitialized.value &&
     //(projectId.value === null || isTransitioning.value) &&
     !preloaderVisible.value
   ) {
@@ -146,13 +145,11 @@ watch(
   >
     <ScrollIcon />
     <Layout>
+      <div class="scene-layer" :style="{ '--contact-bottom': `${contactBottom}px` }" aria-hidden="true">
+        <canvas :class="['three-canvas', { 'three-canvas-contact': !isStickyVisible }]" ref="threeCanvasRef"></canvas>
+      </div>
       <div class="intro-wrapper" ref="introRef">
-        <div
-          class="intro-sticky"
-          :class="{ 'intro-sticky-visible': isStickyVisible }"
-          :style="{ '--contact-bottom': `${contactBottom}px` }"
-        >
-          <canvas :class="['three-canvas', { 'three-canvas-contact': !isStickyVisible }]" ref="threeCanvasRef"></canvas>
+        <div class="intro-sticky">
           <div :class="{ 'intro-about-hidden': !isStickyVisible }">
             <About :spacer-ref="aboutSpacerRef" />
           </div>
@@ -175,15 +172,26 @@ watch(
 </template>
 
 <style scoped lang="scss">
+// Keep the sticky profile in flow; canvas relocation must not change its layout.
+.scene-layer {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+}
+
 .three-canvas {
   width: calc(var(--svw) * 100);
   height: calc(var(--lvh) * 100);
   max-height: calc(var(--lvh) * 100);
-  position: relative;
+  position: sticky;
+  top: 0;
+  pointer-events: auto;
   overflow: hidden;
 
   &-contact {
     position: absolute;
+    top: auto;
     bottom: var(--contact-bottom);
     left: 0;
     width: 100%;
@@ -265,6 +273,7 @@ watch(
 }
 
 .intro-sticky {
+  position: sticky;
   top: 0;
   left: 0;
   width: 100%;
@@ -274,10 +283,6 @@ watch(
   z-index: -1;
   display: flex;
   align-items: flex-end;
-
-  &-visible {
-    position: sticky;
-  }
 }
 
 .intro-sticky-content {

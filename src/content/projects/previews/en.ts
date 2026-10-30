@@ -1,3 +1,4 @@
+import visaqaPreview from "../../../media/thumbnails/visaqa-preview.svg";
 import dartPreview from "../../../media/thumbnails/dart-vtc-preview.svg";
 import paperPreview from "../../../media/thumbnails/paper-preview.svg";
 import chatbotPreview from "../../../media/images/projects/enterprise/chatbot.gif";
@@ -6,6 +7,12 @@ import retrievalPreview from "../../../media/thumbnails/retrieval-preview.svg";
 import type { ProjectPreview } from "../../types";
 
 export default [
+  {
+    title: "ViSAQA",
+    slug: "visaqa",
+    thumbnail: visaqaPreview,
+    description: "Co-authored paper accepted at EAI AICON 2026 (to appear)",
+  },
   {
     title: "DART-VTC",
     slug: "dart-vtc",

@@ -1,11 +1,11 @@
 import gsap from "gsap";
 import Lenis from "lenis";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { ref, onMounted, onUnmounted, watch } from "vue";
+import { ref, shallowRef, onMounted, onUnmounted, watch } from "vue";
 import { isTransitioning } from "./useProjectTransition";
 
-export const lenis = ref<Lenis | null>(null);
-export const projectLenis = ref<Lenis | null>(null);
+export const lenis = shallowRef<Lenis | null>(null);
+export const projectLenis = shallowRef<Lenis | null>(null);
 export const velocity = ref(0);
 
 const handleScroll = () => {
@@ -17,17 +17,14 @@ export const useScroll = () => {
     const instance = lenis.value;
     if (!instance) return;
 
-    if (instance.isScrolling === "smooth" && Math.abs(instance.velocity) > 0) {
-      velocity.value = Math.min(Math.abs(instance.velocity * 0.75) || 0, 1);
-    }
-
     instance.raf(time * 1000);
+    velocity.value = instance.isScrolling === "smooth" ? Math.min(Math.abs(instance.velocity * 0.75), 1) : 0;
   };
 
   const createNewLenis = () => {
     if (lenis.value) {
-      lenis.value.destroy();
       lenis.value.off("scroll", handleScroll);
+      lenis.value.destroy();
     }
 
     lenis.value = new Lenis({
@@ -56,5 +53,9 @@ export const useScroll = () => {
 
   onUnmounted(() => {
     gsap.ticker.remove(tick);
+    lenis.value?.off("scroll", handleScroll);
+    lenis.value?.destroy();
+    lenis.value = null;
+    velocity.value = 0;
   });
 };

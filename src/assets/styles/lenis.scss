@@ -3,6 +3,12 @@ html.lenis body {
   height: auto;
 }
 
+// Lenis owns smooth scrolling, including when a link or carousel has focus.
+html.lenis,
+html.lenis:focus-within {
+  scroll-behavior: auto;
+}
+
 .lenis:not(.lenis-autoToggle).lenis-stopped {
   overflow: clip;
 }

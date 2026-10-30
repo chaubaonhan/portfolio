@@ -14,6 +14,7 @@ export interface Props {
   src: string;
   alt?: string;
   caption?: string;
+  fit?: "cover" | "contain";
   index: number;
 }
 
@@ -64,6 +65,7 @@ onMounted(async () => {
         loading="lazy"
         fetchpriority="high"
         class="project-media-image"
+        :style="{ objectFit: props.fit ?? 'cover' }"
         ref="mediaRef"
       />
       <video

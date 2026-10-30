@@ -107,11 +107,11 @@ const handleTimelineCreated = (timeline: gsap.core.Timeline, delay: number) => {
 };
 
 const SERVICES_EN = [
-  { name: "Vietnamese NLP" },
-  { name: "Dataset Construction" },
-  { name: "Transformer Evaluation" },
-  { name: "Retrieval & RAG" },
-  { name: "Production AI Systems" },
+  { name: "Vietnamese Text Classification" },
+  { name: "Dataset Construction & Evaluation" },
+  { name: "Temporal Drift & Model Robustness" },
+  { name: "Evidence-Aware Question Answering" },
+  { name: "Retrieval & AI Applications" },
 ] as const satisfies { name: string }[];
 
 const SERVICES_DE = SERVICES_EN;

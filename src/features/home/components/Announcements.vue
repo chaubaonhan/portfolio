@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { computed } from "vue";
+import AnnouncementImage from "./AnnouncementImage.vue";
 import Banner from "../../../components/Banner.vue";
 import ButtonRound from "../../../components/ButtonRound.vue";
 import Link from "../../../components/Link.vue";
@@ -50,6 +51,24 @@ const { trackRef, activeIndex, previous, next, handleKeydown, focusInactiveItem 
               {{ announcement.category }}
             </span>
           </div>
+
+          <Link
+            v-if="announcement.banner"
+            :href="announcement.href"
+            external
+            :class="[
+              'announcement-card-banner',
+              { 'announcement-card-banner-competition': announcement.banner.variant === 'competition' },
+            ]"
+            :aria-label="announcement.linkLabel"
+          >
+            <AnnouncementImage :src="announcement.banner.src" :alt="announcement.banner.alt" />
+            <template v-if="announcement.banner.variant === 'competition'">
+              <span class="announcement-card-banner-label">{{ announcement.banner.label }}</span>
+              <strong class="announcement-card-banner-headline">{{ announcement.banner.headline }}</strong>
+              <span class="announcement-card-banner-caption">{{ announcement.banner.caption }}</span>
+            </template>
+          </Link>
 
           <div class="announcement-card-content">
             <h3 class="announcement-card-title">{{ announcement.title }}</h3>
@@ -382,6 +401,63 @@ const { trackRef, activeIndex, previous, next, handleKeydown, focusInactiveItem 
     flex-direction: column;
     gap: var(--space-sm);
     padding: var(--space-lg);
+  }
+
+  &-banner {
+    display: block;
+    aspect-ratio: 1200 / 430;
+    overflow: hidden;
+    border-bottom: var(--stroke-md) solid var(--color-black-400);
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    &:focus-visible {
+      outline: 3px solid var(--card-accent);
+      outline-offset: -5px;
+    }
+
+    &-competition {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: flex-start;
+      gap: 4px;
+      padding: 18px 22px;
+      color: #fff;
+      background: radial-gradient(ellipse at 90% 10%, #1683a5, transparent 65%), #092e59;
+
+      img {
+        position: absolute;
+        right: 18px;
+        top: 18px;
+        width: 34%;
+        height: auto;
+        object-fit: contain;
+      }
+    }
+
+    &-label {
+      max-width: 55%;
+      font-family: "ProFontWindows";
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    &-headline {
+      font-size: clamp(30px, 5vw, 52px);
+      line-height: 1;
+      letter-spacing: -0.03em;
+    }
+
+    &-caption {
+      font-size: 12px;
+    }
   }
 
   &-title {
